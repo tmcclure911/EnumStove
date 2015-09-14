@@ -1,6 +1,6 @@
 
 public class Burner {
-	private enum Temperature {HOT, WARM, COLD};
+	public enum Temperature {HOT, WARM, COLD};
 	
 	Temperature temperature;
 	Setting setting;
@@ -16,39 +16,43 @@ public class Burner {
 		return temperature;
 	}
 	
-	private void increaseSetting(){
+	public void increaseSetting(){
 		switch(setting) {
 		case OFF: 
 			setting = Setting.LOW;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
 			break;
 		case LOW:
 			setting = Setting.MEDIUM;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
 			break;
 		case MEDIUM:
 			setting = Setting.HIGH;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
+			break;
+		default:
 			break;
 		}
 	} 
-	private void decreaseSetting(){
+	public void decreaseSetting(){
 		switch(setting) {
 		case HIGH:
 			setting = Setting.MEDIUM;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
 			break;
 		case MEDIUM:
 			setting = Setting.LOW;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
 			break;
 		case LOW:
 			setting = Setting.OFF;
-			timer = timer + 2;
+			timer = timer + TIME_DURATION;
+			break;
+		default:
 			break;
 		}
 	}
-	private void updateTemperature(){
+	public void updateTemperature(){
 		if (timer > 0){
 			timer--;
 		}
@@ -67,13 +71,13 @@ public class Burner {
 		}
 	}
 	public void Display(){
-		System.out.print(setting.toString() + "...");
+		System.out.print("[" + setting.toString() + "].....");
 		switch (temperature) {
 		case HOT:
 			System.out.println("HOT SURFACE DO NOT TOUCH");
 			break;
 		case WARM:
-			System.out.println("Cafeful");
+			System.out.println("");
 			break;
 		default:
 			System.out.println("coooool");
